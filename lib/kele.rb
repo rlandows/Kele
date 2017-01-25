@@ -29,18 +29,18 @@ class Kele
     body.find_all {|x| x['booked'] == nil}.map {|x| x["starts_at"]}
   end
 
-  # def get_messages(arg = nil)
-  #   response = self.class.get(api_url("message_threads"), headers: { "authorization" => @auth_token })
-  #   body = JSON.parse(response.body)
-  #   pages = (1..(response["count"]/10 + 1)).map do |n|
-  #     self.class.get(api_url("message_threads"), body: { page: n }, headers: { "authorization" => @auth_token })
-  #   end
-  # end
-  #
-  # def create_message(user_id, recipient_id, token, subject, stripped)
-  #   options = {body: {user_id: user_id, recipient_id: recipient_id, token: nil, subject: subject, stripped: stripped}, headers: { "authorization" => @auth_token }}
-  #   self.class.post(api_url("messages"), options)
-  # end
+  def get_messages(arg = nil)
+    response = self.class.get(api_url("message_threads"), headers: { "authorization" => @auth_token })
+    body = JSON.parse(response.body)
+    pages = (1..(response["count"]/10 + 1)).map do |n|
+      self.class.get(api_url("message_threads"), body: { page: n }, headers: { "authorization" => @auth_token })
+    end
+  end
+
+  def create_message(user_id, recipient_id, token, subject, stripped)
+    options = {body: {user_id: user_id, recipient_id: recipient_id, token: nil, subject: subject, stripped: stripped}, headers: { "authorization" => @auth_token }}
+    self.class.post(api_url("messages"), options)
+  end
 
   private
    def api_url(endpoint)
