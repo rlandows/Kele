@@ -38,7 +38,7 @@ class Kele
   end
 
   def create_message(sender, recipient_id, token, subject, stripped)
-    self.class.post(api_url("messages"), body: {sender: sender, recipient_id: recipient_id, token: nil, subject: subject, stripped: stripped}, headers: { "authorization" => @auth_token })
+    self.class.post(api_url("messages"), body: {sender: sender, recipient_id: recipient_id, token: nil, subject: subject, "stripped-text": stripped}, headers: { "authorization" => @auth_token })
 
   end
 
