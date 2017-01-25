@@ -38,8 +38,8 @@ class Kele
   end
 
   def create_message(user_id, recipient_id, token, subject, stripped)
-    options = {body: {user_id: user_id, recipient_id: recipient_id, token: nil, subject: subject, stripped: stripped}, headers: { "authorization" => @auth_token }}
-    self.class.post(api_url("messages"), options)
+    self.class.post(api_url("messages"), body: {user_id: user_id, recipient_id: recipient_id, token: nil, subject: subject, stripped: stripped}, headers: { "authorization" => @auth_token })
+
   end
 
   private
