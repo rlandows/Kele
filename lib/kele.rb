@@ -7,7 +7,7 @@ require 'json'
 class Kele
   include HTTParty
   include Roadmap
-  
+
 
   def initialize(email, password)
 
@@ -42,9 +42,9 @@ class Kele
   end
 
   def create_submission(checkpoint_id, assignment_branch, assignment_commit_link, comment)
-    response = self.class.get(api_url(users/me), headers: { "authorization" => @auth_token })
+    response = self.class.get(api_url("users/me"), headers: { "authorization" => @auth_token })
      enrollment_id = response["current_enrollment"]["id"]
-     response = self.class.post(api_url(checkpoint_submissions), body: { enrollment_id: enrollment_id, checkpoint_id: checkpoint_id, assignment_branch: assignment_branch, assignment_commit_link: assignment_commit_link, comment: comment }, headers: { "authorization" => @auth_token })
+     response = self.class.post(api_url("checkpoint_submissions"), body: { enrollment_id: enrollment_id, checkpoint_id: checkpoint_id, assignment_branch: assignment_branch, assignment_commit_link: assignment_commit_link, comment: comment }, headers: { "authorization" => @auth_token })
  end
 
   private
